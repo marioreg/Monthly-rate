@@ -33,7 +33,19 @@ $("#submit").on("click", function(){
 
   });
 
+  $(".add_new").empty();
 
+  database.ref("/users").on("child_added", function(snapshot){
+
+    
+
+    var newRow = $("<tr>");
+    var newTd = "<th>"+ snapshot.val().name + "</th>" + "<td>"+ snapshot.val().role + "</td>" + "<td>"+ snapshot.val().startDate + "</td>" + "<td>"+ "Months worked" + "</td>" + "<td>"+ snapshot.val().monthlyRate + "</td>" + "<td>"+ "totalBilled" + "</td>";
+    newRow.append(newTd);
+    $(".add_new").append(newRow);
+
+
+  });
 
 
 });
