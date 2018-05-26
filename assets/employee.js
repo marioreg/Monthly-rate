@@ -12,6 +12,9 @@ var config = {
 
   
   var database = firebase.database();
+
+  display();
+
   
 $("#submit").on("click", function(){
   
@@ -33,23 +36,23 @@ $("#submit").on("click", function(){
 
   });
 
+display();
+
+});
+
+
+ function display(){
   $(".add_new").empty();
 
   database.ref("/users").on("child_added", function(snapshot){
-
     
-
     var newRow = $("<tr>");
     var newTd = "<th>"+ snapshot.val().name + "</th>" + "<td>"+ snapshot.val().role + "</td>" + "<td>"+ snapshot.val().startDate + "</td>" + "<td>"+ "Months worked" + "</td>" + "<td>"+ snapshot.val().monthlyRate + "</td>" + "<td>"+ "totalBilled" + "</td>";
     newRow.append(newTd);
     $(".add_new").append(newRow);
 
-
   });
 
 
-});
-
-
- 
+ }
 
