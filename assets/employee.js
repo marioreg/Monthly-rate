@@ -11,8 +11,33 @@ var config = {
   firebase.initializeApp(config);
 
   
-
+  var database = firebase.database();
+  
 $("#submit").on("click", function(){
   
+  event.preventDefault();
+
+  var name = $("#employee_name").val().trim();
+  var role = $("#role").val().trim();
+  var startDate = $("#start_date").val().trim();
+  var monthlyRate = $("#monthly_rate").val().trim();
+
+  database.ref("/users").push( {
+
+    name: name,
+    role:role,
+    startDate: startDate,
+    monthlyRate : monthlyRate,
+    dateAdded: firebase.database.ServerValue.TIMESTAMP
+
+
+  });
+
+
+
 
 });
+
+
+ 
+
